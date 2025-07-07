@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Proyecto } from '@/app/interfaces/IProyecto'
 
 export default function Mostrarpersonas() {
+  const miStorage = window.localStorage
+  const [Proyectos, setProyectos] = useState<Proyecto[]>([])
+  useEffect(() => {
+    let listadoStr = miStorage.getItem("proyectos")
+    if(listadoStr != null){
+      let listado = JSON.parse(listadoStr)
+      setProyectos(listado)
+      console.log(Proyectos)
+    }
+    }, [])
+
+
   
   return (
     <>
@@ -16,7 +28,18 @@ export default function Mostrarpersonas() {
           <th>Acción</th>
         </thead>
         <tbody>
-          
+          {Proyectos.map((p,index)=>{
+            return(
+              <tr>
+                <td>{p.descripcion}</td>
+                <td>{p.presupuesto}</td>
+                <td>{p.fecha}</td>
+                <td>{p.tipo}</td>
+                <td>{p.descripcion}</td>
+                <td><button>Editar</button><button>Eliminar</button></td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
     </>
