@@ -14,7 +14,9 @@ export const Mostrarproyectos = (props:Props) => {
       console.log(Proyectos)
     }
     }, [])
-
+    const editar = (index:number)=> {
+      
+    }
   return (
     <>
       <h2>Proyectos</h2>
@@ -36,7 +38,7 @@ export const Mostrarproyectos = (props:Props) => {
                 <td>{p.fecha}</td>
                 <td>{p.tipo}</td>
                 <td>{p.descripcion}</td>
-                <td><button>Editar</button><button>Eliminar</button></td>
+                <td><button onClick={()=>editar(index)}>Editar</button><button>Eliminar</button></td>
               </tr>
             )
           })}

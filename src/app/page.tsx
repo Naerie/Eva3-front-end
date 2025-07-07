@@ -39,9 +39,14 @@ export default function Home() {
       } 
     }
 
-    const traerProyecto = (p:Proyecto)=>{
-      setProyectoA(p)
-    }
+  const handleActualizar = ()=>{
+    alert("Actalizando")
+  }
+
+
+  const traerProyecto = (p:Proyecto)=>{
+    setProyectoA(p)
+  }
 
   return (
     <>
@@ -70,7 +75,6 @@ export default function Home() {
           <select 
           name="tipo" 
           id=""
-          value={Proyecto.tipo}
           onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}>
             <option value="">Seleccione</option>
             <option value="Comunidad">Comunidad</option>
@@ -89,6 +93,54 @@ export default function Home() {
         </form>
 
         <Mostrarproyectos traerProyecto={traerProyecto}/>
+
+        <h3>Actualizar proyecto</h3>
+        <form>
+          <label>Nombre: </label>
+          <input 
+          type="text" 
+          name="nombre"    
+          placeholder="Nombre del proyecto"
+          value={ProyectoA.nombre}
+          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}/><br/>
+
+          <label>Presupuesto: </label>
+          <input 
+          type="number" 
+          name="presupuesto" 
+          placeholder="100000"
+          value={ProyectoA.presupuesto}
+          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}/><br/>
+
+          <label>Fecha: </label>
+          <input 
+          type="date" 
+          name="fecha"
+          value={ProyectoA.fecha} 
+          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}/><br/>
+
+          <label>Tipo: </label>
+          <select 
+          name="tipo" 
+          id=""
+          value={ProyectoA.tipo}
+          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}>
+            <option value="">Seleccione</option>
+            <option value="Comunidad">Comunidad</option>
+            <option value="Educación">Educación</option>
+            <option value="Salud">Salud</option>
+          </select><br/>
+
+          <label htmlFor="">Descripción</label><br/>
+          <textarea 
+          name="descripcion" 
+          id=""
+          value={ProyectoA.descripcion}
+          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}></textarea><br/>
+
+          <button
+          onClick={()=>handleActualizar()}>Actualizar</button>
+        </form>
     </>
   );
 }
