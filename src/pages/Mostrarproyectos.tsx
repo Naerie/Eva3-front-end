@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Proyecto } from '@/app/interfaces/IProyecto'
+import { Props } from '@/app/interfaces/IProps'
 
-export default function Mostrarpersonas() {
+export const Mostrarproyectos = (props:Props) => {
   const miStorage = window.localStorage
   const [Proyectos, setProyectos] = useState<Proyecto[]>([])
+  
   useEffect(() => {
     let listadoStr = miStorage.getItem("proyectos")
     if(listadoStr != null){
@@ -13,8 +15,6 @@ export default function Mostrarpersonas() {
     }
     }, [])
 
-
-  
   return (
     <>
       <h2>Proyectos</h2>
@@ -45,3 +45,5 @@ export default function Mostrarpersonas() {
     </>
   )
 }
+
+export default Mostrarproyectos

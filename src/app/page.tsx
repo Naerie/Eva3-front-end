@@ -15,6 +15,7 @@ export default function Home() {
   const miStorage = window.localStorage
   const [Proyectos, setProyectos] = useState<Proyecto[]>([])
   const [Proyecto, setProyecto] = useState(initialStateProyecto)
+  const [ProyectoA, setProyectoA] = useState(initialStateProyecto)
 
   useEffect(() => {
     let listadoStr = miStorage.getItem("proyectos")
@@ -36,6 +37,10 @@ export default function Home() {
     if(name == "presupuesto" && Number(value) <= 0){
       console.log("el presupuesto debe ser mayor a 0")
       } 
+    }
+
+    const traerProyecto = (p:Proyecto)=>{
+      setProyectoA(p)
     }
 
   return (
@@ -63,7 +68,7 @@ export default function Home() {
 
           <label>Tipo: </label>
           <select 
-          name="opcionesTipo" 
+          name="tipo" 
           id=""
           onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}>
             <option value="">Seleccione</option>
@@ -82,7 +87,7 @@ export default function Home() {
           onClick={()=>handleRegistrar()}>Registrar</button>
         </form>
 
-        <Mostrarproyectos/>
+        <Mostrarproyectos traerProyecto={traerProyecto}/>
     </>
   );
 }
