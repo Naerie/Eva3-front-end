@@ -1,4 +1,5 @@
 "use client"
+import Mostrarproyectos from "@/pages/Mostrarproyectos";
 
 import { useEffect, useState } from "react";
 import { Proyecto } from "./interfaces/IProyecto";
@@ -80,6 +81,8 @@ export default function Home() {
           <button
           onClick={()=>handleRegistrar()}>Registrar</button>
         </form>
+
+        <Mostrarproyectos/>
     </>
   );
 }
