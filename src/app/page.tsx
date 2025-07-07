@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Proyecto } from "./interfaces/IProyecto";
 
 const initialStateProyecto:Proyecto = {
@@ -12,19 +12,29 @@ const initialStateProyecto:Proyecto = {
 }
 export default function Home() {
   const miStorage = window.localStorage
-  const [proyectos, setproyectos] = useState<Proyecto[]>([])
-  const [proyecto, setproyecto] = useState(initialStateProyecto)
+  const [Proyectos, setProyectos] = useState<Proyecto[]>([])
+  const [Proyecto, setProyecto] = useState(initialStateProyecto)
+
+  useEffect(() => {
+    let listadoStr = miStorage.getItem("proyectos")
+    if(listadoStr != null){
+      let listado = JSON.parse(listadoStr)
+      setProyectos(listado)
+      console.log(Proyectos)
+    }
+  }, [])
+  
     
   const handleRegistrar = ()=>{
-    miStorage.setItem("proyectos", JSON.stringify([...proyectos, proyecto])) 
+    miStorage.setItem("proyectos", JSON.stringify([...Proyectos,Proyecto])) 
     }
 
-  const handleProyecto = (name:string, value:string)=>{setproyecto(
-    {...proyecto, [name]:value})
+  const handleProyecto = (name:string, value:string)=>{
+    setProyecto(
+    {...Proyecto, [name]:value})
     if(name == "presupuesto" && Number(value) <= 0){
       console.log("el presupuesto debe ser mayor a 0")
-    }
-  
+      } 
     }
 
   return (
