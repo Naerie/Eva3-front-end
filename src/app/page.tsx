@@ -70,11 +70,12 @@ export default function Home() {
           <select 
           name="tipo" 
           id=""
+          value={Proyecto.tipo}
           onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}>
             <option value="">Seleccione</option>
-            <option value="">Comunidad</option>
-            <option value="">Educación</option>
-            <option value="">Salud</option>
+            <option value="Comunidad">Comunidad</option>
+            <option value="Educación">Educación</option>
+            <option value="Salud">Salud</option>
           </select><br/>
 
           <label htmlFor="">Descripción</label><br/>

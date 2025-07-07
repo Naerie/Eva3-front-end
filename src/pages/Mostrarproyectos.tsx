@@ -31,7 +31,7 @@ export const Mostrarproyectos = (props:Props) => {
           {Proyectos.map((p,index)=>{
             return(
               <tr>
-                <td>{p.descripcion}</td>
+                <td>{p.nombre}</td>
                 <td>{p.presupuesto}</td>
                 <td>{p.fecha}</td>
                 <td>{p.tipo}</td>
