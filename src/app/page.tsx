@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react";
 import { Proyecto } from "./interfaces/IProyecto";
 
 const initialStateProyecto:Proyecto = {
@@ -10,6 +11,16 @@ const initialStateProyecto:Proyecto = {
   descripcion:""
 }
 export default function Home() {
+  const miStorage = window.localStorage
+  const [proyectos, setproyectos] = useState<Proyecto[]>([])
+  const [proyecto, setproyecto] = useState(initialStateProyecto)
+    
+    const handleRegistrar = ()=>{
+      miStorage.setItem("proyectos", JSON.stringify([...proyectos, proyecto]))
+    }
+
+
+
   return (
     <>
     <h1>Bienvenido al sistema de gestión</h1>
