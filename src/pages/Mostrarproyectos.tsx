@@ -15,7 +15,9 @@ export const Mostrarproyectos = (props:Props) => {
     }
     }, [])
     const editar = (index:number)=> {
-      
+      const proyectoAEditar = Proyectos[index]
+      props.traerProyecto(proyectoAEditar, index)
+
     }
   return (
     <>

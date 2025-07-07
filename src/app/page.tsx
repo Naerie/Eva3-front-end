@@ -16,6 +16,8 @@ export default function Home() {
   const [Proyectos, setProyectos] = useState<Proyecto[]>([])
   const [Proyecto, setProyecto] = useState(initialStateProyecto)
   const [ProyectoA, setProyectoA] = useState(initialStateProyecto)
+  const [indiceA, setIndiceA] = useState<number | null>(null);
+
 
   useEffect(() => {
     let listadoStr = miStorage.getItem("proyectos")
@@ -44,8 +46,10 @@ export default function Home() {
   }
 
 
-  const traerProyecto = (p:Proyecto)=>{
-    setProyectoA(p)
+  const traerProyecto = (p:Proyecto, index:number)=>{
+    setProyectoA(p),
+    setIndiceA(index)
+
   }
 
   return (
@@ -92,7 +96,7 @@ export default function Home() {
           onClick={()=>handleRegistrar()}>Registrar</button>
         </form>
 
-        <Mostrarproyectos traerProyecto={traerProyecto}/>
+        <Mostrarproyectos traerProyecto={traerProyecto} />
 
         <h3>Actualizar proyecto</h3>
         <form>
