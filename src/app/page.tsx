@@ -16,8 +16,7 @@ export default function Home() {
   const [Proyectos, setProyectos] = useState<Proyecto[]>([])
   const [Proyecto, setProyecto] = useState(initialStateProyecto)
   const [ProyectoA, setProyectoA] = useState(initialStateProyecto)
-  const [indiceA, setIndiceA] = useState<number | null>(null);
-
+  const [indiceA, setIndiceA] = useState<number | null>(null)
 
   useEffect(() => {
     let listadoStr = miStorage.getItem("proyectos")
@@ -35,22 +34,32 @@ export default function Home() {
 
   const handleProyecto = (name:string, value:string)=>{
     setProyecto(
-    {...Proyecto, [name]:value})
-    if(name == "presupuesto" && Number(value) <= 0){
-      console.log("el presupuesto debe ser mayor a 0")
-      } 
+    {...Proyecto, [name]:value}) 
     }
 
-  const handleActualizar = ()=>{
-    alert("Actalizando")
-  }
-
+    const handleActualizar = (index: number | null) => {
+      const proyectoActualizado = Proyectos.map((p,indice)=>{
+        if(index == indice){
+          return ProyectoA
+        }
+        return p
+      })
+    
+      setProyectos(proyectoActualizado)
+      miStorage.setItem("proyectos", JSON.stringify(proyectoActualizado))
+      setProyectoA(initialStateProyecto)
+      setIndiceA(null)
+    };
+    
 
   const traerProyecto = (p:Proyecto, index:number)=>{
     setProyectoA(p),
     setIndiceA(index)
-
   }
+
+  const handleProyectoA = (name:string, value:string)=>{
+    setProyectoA({...ProyectoA, [name]:value}) 
+    }
 
   return (
     <>
@@ -106,7 +115,7 @@ export default function Home() {
           name="nombre"    
           placeholder="Nombre del proyecto"
           value={ProyectoA.nombre}
-          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}/><br/>
+          onChange={(e)=>{handleProyectoA(e.currentTarget.name, e.currentTarget.value)}}/><br/>
 
           <label>Presupuesto: </label>
           <input 
@@ -114,21 +123,21 @@ export default function Home() {
           name="presupuesto" 
           placeholder="100000"
           value={ProyectoA.presupuesto}
-          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}/><br/>
+          onChange={(e)=>{handleProyectoA(e.currentTarget.name, e.currentTarget.value)}}/><br/>
 
           <label>Fecha: </label>
           <input 
           type="date" 
           name="fecha"
           value={ProyectoA.fecha} 
-          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}/><br/>
+          onChange={(e)=>{handleProyectoA(e.currentTarget.name, e.currentTarget.value)}}/><br/>
 
           <label>Tipo: </label>
           <select 
           name="tipo" 
           id=""
           value={ProyectoA.tipo}
-          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}>
+          onChange={(e)=>{handleProyectoA(e.currentTarget.name, e.currentTarget.value)}}>
             <option value="">Seleccione</option>
             <option value="Comunidad">Comunidad</option>
             <option value="Educación">Educación</option>
@@ -140,10 +149,10 @@ export default function Home() {
           name="descripcion" 
           id=""
           value={ProyectoA.descripcion}
-          onChange={(e)=>{handleProyecto(e.currentTarget.name, e.currentTarget.value)}}></textarea><br/>
+          onChange={(e)=>{handleProyectoA(e.currentTarget.name, e.currentTarget.value)}}></textarea><br/>
 
           <button
-          onClick={()=>handleActualizar()}>Actualizar</button>
+          onClick={(e)=>handleActualizar(indiceA)}>Actualizar</button>
         </form>
     </>
   );
