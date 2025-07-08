@@ -21,12 +21,11 @@ export const Mostrarproyectos = (props:Props) => {
     }
     const eliminar = (index:number)=>{
       const proyectoE = Proyectos[index]
-      let confirmacionEliminar = confirm("Está seguro que desea eliminar el proyecto ${proyectoE.nombre}")
+      let confirmacionEliminar = confirm(`Está seguro que desea eliminar el proyecto ${proyectoE.nombre}`)
       
       if (confirmacionEliminar){
-        props.traerProyecto(proyectoE, index)
-        } 
-      }
+        props.eliminarProyecto(index)
+      }}
 
       
   return (
@@ -61,4 +60,4 @@ export const Mostrarproyectos = (props:Props) => {
   )
 }
 
-export default Mostrarproyectos
+export default Mostrarproyectos 

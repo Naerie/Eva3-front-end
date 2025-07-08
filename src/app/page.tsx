@@ -62,9 +62,13 @@ export default function Home() {
     setProyectoA({...ProyectoA, [name]:value}) 
     }
   
-    const handleEliminar = ()=>{
-      alert("eliminar")
+    const handleEliminar = (index:number)=>{
+      const listaActualizada = Proyectos.filter((p,indice) => indice !== index)
+      setProyectos(listaActualizada)
+      miStorage.setItem("proyectos",JSON.stringify(listaActualizada))
     }
+
+
 
   return (
     <>
@@ -110,7 +114,8 @@ export default function Home() {
           onClick={()=>handleRegistrar()}>Registrar</button>
         </form>
 
-        <Mostrarproyectos traerProyecto={traerProyecto} />
+        <Mostrarproyectos
+         traerProyecto={traerProyecto} eliminarProyecto={handleEliminar} />
 
         <h3>Actualizar proyecto</h3>
         <form>
