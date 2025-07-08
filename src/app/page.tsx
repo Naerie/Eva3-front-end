@@ -57,8 +57,13 @@ export default function Home() {
     setIndiceA(index)
   }
 
+
   const handleProyectoA = (name:string, value:string)=>{
     setProyectoA({...ProyectoA, [name]:value}) 
+    }
+  
+    const handleEliminar = ()=>{
+      alert("eliminar")
     }
 
   return (

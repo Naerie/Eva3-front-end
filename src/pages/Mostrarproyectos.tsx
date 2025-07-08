@@ -19,6 +19,16 @@ export const Mostrarproyectos = (props:Props) => {
       props.traerProyecto(proyectoAEditar, index)
 
     }
+    const eliminar = (index:number)=>{
+      const proyectoE = Proyectos[index]
+      let confirmacionEliminar = confirm("Está seguro que desea eliminar el proyecto ${proyectoE.nombre}")
+      
+      if (confirmacionEliminar){
+        props.traerProyecto(proyectoE, index)
+        } 
+      }
+
+      
   return (
     <>
       <h2>Proyectos</h2>
@@ -40,7 +50,8 @@ export const Mostrarproyectos = (props:Props) => {
                 <td>{p.fecha}</td>
                 <td>{p.tipo}</td>
                 <td>{p.descripcion}</td>
-                <td><button onClick={()=>editar(index)}>Editar</button><button>Eliminar</button></td>
+                <td><button onClick={()=>editar(index)}>Editar</button>
+                <button onClick={()=>eliminar(index)}>Eliminar</button></td>
               </tr>
             )
           })}
