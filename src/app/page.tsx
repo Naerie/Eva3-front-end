@@ -115,7 +115,7 @@ export default function Home() {
         </form>
 
         <Mostrarproyectos
-         traerProyecto={traerProyecto} eliminarProyecto={handleEliminar} />
+         traerProyecto={traerProyecto} eliminarProyecto={handleEliminar} proyectos={Proyectos} />
 
         <h3>Actualizar proyecto</h3>
         <form>
